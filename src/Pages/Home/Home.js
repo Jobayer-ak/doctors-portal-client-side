@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Info from "./Info";
 import MakeAppoinment from "./MakeAppoinment";
 import Services from "./Services";
+import StayConnected from "./StayConnected";
 import Testimonials from "./Testimonials";
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
       <Services></Services>
       <MakeAppoinment></MakeAppoinment>
       <Testimonials></Testimonials>
+      <StayConnected></StayConnected>
       <Footer></Footer>
     </div>
   );
