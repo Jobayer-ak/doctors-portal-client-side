@@ -14,13 +14,13 @@ const Services = () => {
       img: fluoride,
     },
     {
-      _id: 1,
+      _id: 2,
       name: "Cavity Filling",
       description: "",
       img: cavity,
     },
     {
-      _id: 1,
+      _id: 3,
       name: "Teeth Whitening",
       description: "",
       img: whitening,
@@ -40,13 +40,13 @@ const Services = () => {
         ))}
       </div>
 
-      <div class="hero min-h-screen my-20">
-        <div class="hero-content flex-col lg:flex-row-reverse">
+      <div className="hero min-h-screen my-20">
+        <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="px-40">
-            <h1 class="text-5xl font-bold">
+            <h1 className="text-5xl font-bold">
               Exceptional Dental Care, on Your Terms
             </h1>
-            <p class="py-6">
+            <p className="py-6">
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout. The
               point of using Lorem Ipsumis that it has a more-or-less normal
@@ -54,12 +54,12 @@ const Services = () => {
               here', making it look like readable English. Many desktop
               publishing packages and web page
             </p>
-            <button class="btn btn-primary uppercase text-white font-bold bg-gradient-to-r from-secondary to-primary">
+            <button className="btn btn-primary uppercase text-white font-bold bg-gradient-to-r from-secondary to-primary">
               Get Started
             </button>
           </div>
 
-          <img src={treatment} class="max-w-sm rounded-md pl-12" />
+          <img src={treatment} className="max-w-sm rounded-md pl-12" />
         </div>
       </div>
     </div>
