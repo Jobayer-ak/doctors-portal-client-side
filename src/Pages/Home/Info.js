@@ -9,17 +9,17 @@ const Info = () => {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 text-white">
       <InfoCard
         cardTitle="Opening Hours"
-        bgClass="font-bold bg-gradient-to-r from-secondary to-primary"
+        bgclassName="font-bold bg-gradient-to-r from-secondary to-primary"
         img={clock}></InfoCard>
 
       <InfoCard
         cardTitle="Our Locations"
-        bgClass="font-bold bg-neutral"
+        bgclassName="font-bold bg-neutral"
         img={marker}></InfoCard>
 
       <InfoCard
         cardTitle="Contact Us"
-        bgClass="font-bold bg-gradient-to-r from-secondary to-primary"
+        bgclassName="font-bold bg-gradient-to-r from-secondary to-primary"
         img={phone}></InfoCard>
     </div>
   );
