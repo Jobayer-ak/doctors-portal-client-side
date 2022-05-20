@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import chair from "../../assets/images/chair.png";
+import bg from "../../assets/images/bg.png";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { format } from "date-fns";
 
 const AppointmentBanner = ({ date, setDate }) => {
   return (
-    <div className="hero min-h-screen">
-      <div className="hero-content flex-col lg:flex-row-reverse">
+    <div
+      style={{
+        background: `url(${bg})`,
+        backgroundSize: "cover",
+      }}
+      class="hero min-h-screen py-10">
+      <div className="hero-content flex-col lg:flex-row-reverse gap-x-14">
         <img
           src={chair}
           className="max-w-sm rounded-lg shadow-2xl"
