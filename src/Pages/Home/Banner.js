@@ -7,12 +7,16 @@ const Banner = () => {
   return (
     <div
       style={{
-        background: `url(${bg})`,
+        backgroundImage: `url(${bg})`,
         backgroundSize: "cover",
       }}
       className="hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse gap-x-12">
-        <img src={chair} className="max-w-sm rounded-lg shadow-2xl" alt="" />
+        <img
+          src={chair}
+          className="max-w-sm rounded-lg shadow-2xl img-fluid"
+          alt=""
+        />
         <div>
           <h1 className="text-5xl font-bold">Your New Smile Starts Here</h1>
           <p className="py-6">

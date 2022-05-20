@@ -1,56 +1,81 @@
 import React from "react";
 import {
-  useSignInWithEmailAndPassword,
+  useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
   // hooks
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+
   const navigate = useNavigate();
-  const location = useLocation();
 
   let signInError;
-  let from = location.state?.from?.pathname || "/";
-  // console.log(from, ":first from");
 
   // loding
-  if (loading || gLoading) {
+  if (loading || gLoading || updating) {
     return <Loading></Loading>;
   }
   //error
-  if (error || gError) {
-    signInError = <p>{error?.message || gError.message}</p>;
+  if (error || gError || updateError) {
+    signInError = (
+      <p>{error?.message || gError.message || updateError.message}</p>
+    );
   }
-
-  // after login it will take to desire page
+  // validation
   if (user || gUser) {
     console.log(user || gUser);
-    navigate(from, { replace: true });
   }
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
-    signInWithEmailAndPassword(data.email, data.password);
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
+    console.log("Update Done");
+    navigate("/appointment");
   };
-
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
-          <h2 className="text-center text-2xl font-bold">Login</h2>
+          <h2 className="text-center text-2xl font-bold">Sign Up</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="input input-bordered w-full max-w-xs"
+                {...register("name", {
+                  required: {
+                    value: true,
+                    message: "Name Is Required",
+                  },
+                })}
+              />
+              <label className="label">
+                {errors.name?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.name.message}
+                  </span>
+                )}
+              </label>
+            </div>
             <div className="form-control w-full max-w-xs">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -118,14 +143,18 @@ const Login = () => {
 
             {signInError}
 
-            <input type="submit" className="btn w-full max-w-xs" value="Sign" />
+            <input
+              type="submit"
+              className="btn w-full max-w-xs"
+              value="Sign Up"
+            />
           </form>
           <p>
             <small>
               {" "}
-              New To Doctors Portal{" "}
-              <Link className="text-secondary" to="/signup">
-                Create New Account
+              Already have an account?{" "}
+              <Link className="text-secondary" to="/login">
+                Please login
               </Link>
             </small>
           </p>
@@ -142,5 +171,4 @@ const Login = () => {
   );
 };
 
-export default Login;
-<h3>This is Login page</h3>;
+export default SignUp;
