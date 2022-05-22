@@ -12,6 +12,7 @@ const AvailableAppointments = ({ date }) => {
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
+
   return (
     <div>
       <h4 className="text-xl text-primary text-center my-12">
