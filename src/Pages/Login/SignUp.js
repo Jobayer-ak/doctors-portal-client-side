@@ -8,6 +8,7 @@ import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
 import { Link, useNavigate } from "react-router-dom";
+import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
   // hooks
@@ -20,6 +21,8 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  const [token] = useToken(user || gUser);
 
   const navigate = useNavigate();
 
@@ -36,8 +39,8 @@ const SignUp = () => {
     );
   }
   // validation
-  if (user || gUser) {
-    console.log(user || gUser);
+  if (token) {
+    navigate("/appointment");
   }
 
   const onSubmit = async (data) => {
@@ -45,7 +48,7 @@ const SignUp = () => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
     console.log("Update Done");
-    navigate("/appointment");
+    // navigate("/appointment");
   };
   return (
     <div className="flex justify-center items-center h-screen">
@@ -55,7 +58,7 @@ const SignUp = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control w-full max-w-xs">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text">Name</span>
               </label>
               <input
                 type="text"

@@ -65,7 +65,7 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
             onSubmit={handleBooking}
             className="grid grid-cols-1 gap-3 justify-items-center mt-2">
             <input
-              type="text"
+              type="text" 
               readOnly
               value={format(date, "PP")}
               className="input input-bordered w-full max-w-xs"

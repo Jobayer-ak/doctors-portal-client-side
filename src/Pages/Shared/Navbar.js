@@ -80,7 +80,7 @@ const Navbar = () => {
       <div className="navbar-end">
         <label
           tabIndex="1"
-          for="dashboard-sidebar"
+          htmlFor="dashboard-sidebar"
           className="btn btn-ghost lg:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
