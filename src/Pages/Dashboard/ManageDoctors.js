@@ -22,6 +22,20 @@ const ManageDoctors = () => {
   return (
     <div>
       <h2 className="text-2xl">Manage Doctors: {doctors.length}</h2>
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Avatar</th>
+              <th>Name</th>
+              <th>Speciality</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
   );
 };
