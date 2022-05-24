@@ -1,10 +1,10 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-const DeleteConfirmModal = ({ delteingDoctor }) => {
-  const { name } = delteingDoctor;
+const DeleteConfirmModal = ({ deletingDoctor, refetch, setDeletingDoctor }) => {
+  const { name, email } = deletingDoctor;
 
-  const handleDelte = (email) => {
+  const handleDelte = () => {
     fetch(`http://localhost:5000/doctor/${email}`, {
       method: "DELETE",
       headers: {
@@ -16,6 +16,7 @@ const DeleteConfirmModal = ({ delteingDoctor }) => {
         console.log(data);
         if (data.deletedCount) {
           toast.success(`Doctor: ${name} is deleted!`);
+          setDeletingDoctor(null);
           refetch();
         }
       });
@@ -30,9 +31,7 @@ const DeleteConfirmModal = ({ delteingDoctor }) => {
           </h3>
           <p class="py-4">!</p>
           <div class="modal-action">
-            <button
-              onClick={() => handleDelte(email)}
-              class="btn btn-xs btn-error">
+            <button onClick={() => handleDelte()} class="btn btn-xs btn-error">
               Delete
             </button>
             <label htmlFor="delete-confirm-modal" class="btn btn-xs">

@@ -37,7 +37,7 @@ const ManageDoctors = () => {
             </tr>
           </thead>
           <tbody>
-            {doctors.map((doctor, index) => (
+            {doctors?.map((doctor, index) => (
               <DoctorRow
                 key={doctor._id}
                 doctor={doctor}
@@ -50,7 +50,9 @@ const ManageDoctors = () => {
       </div>
       {deletingDoctor && (
         <DeleteConfirmModal
-          deletingDoctor={deletingDoctor}></DeleteConfirmModal>
+          deletingDoctor={deletingDoctor}
+          refetch={refetch}
+          setDeletingDoctor={setDeletingDoctor}></DeleteConfirmModal>
       )}
     </div>
   );
